@@ -1,20 +1,18 @@
 
 from flask_cors import CORS
 from flask import Flask, request, jsonify
+from config import API_KEY, DB_URL
 
 from ibmcloudant.cloudant_v1 import CloudantV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
 # DATABASE CONNECTION
 
-authenticator = IAMAuthenticator(
-    "Nam7uD5Cg04YA4dkxBhurGeEEvy-aTW4HUlH2R8PwrA7")
+authenticator = IAMAuthenticator(API_KEY)
 
 service = CloudantV1(authenticator=authenticator)
 
-service.set_service_url(
-    "https://d170d760-975a-47fc-aff9-232fa364461b-bluemix.cloudantnosqldb.appdomain.cloud")
-
+service.set_service_url(DB_URL)
 
 response = service.get_server_information().get_result()
 
