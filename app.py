@@ -1,8 +1,27 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
+from config import API_KEY, DB_URL
+
+from ibmcloudant.cloudant_v1 import CloudantV1
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+
+# DATABASE CONNECTION
+
+authenticator = IAMAuthenticator(API_KEY)
+
+service = CloudantV1(authenticator=authenticator)
+
+service.set_service_url(DB_URL)
+
+response = service.get_server_information().get_result()
+
+print(response)
+
+
 app = Flask(__name__)
 CORS(app)
+
 
 @app.route('/')
 def homepage():
