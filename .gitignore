@@ -109,3 +109,6 @@ __pycache__
 
 # VSCODE
 .vscode/
+
+
+config.py
