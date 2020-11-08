@@ -4,7 +4,7 @@ import random
 import qrcode
 import nexmo
 
-# from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
+from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
 
 # from ibmcloudant.cloudant_v1 import CloudantV1, Document
 # from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
@@ -33,7 +33,7 @@ CORS(app)
 
 @app.route('/')
 def homepage():
-    return "lol"
+    return "lol2"
 
 
 # Send a request with {name:string} as a body param
