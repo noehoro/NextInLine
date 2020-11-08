@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session, request
 from flask_cors import CORS
+import random
 import qrcode
 
 # from config import API_KEY, DB_URL
@@ -21,6 +22,7 @@ import qrcode
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '9a63e9b6b22e11eabdab2816a84a348cc0491ea4b22e11eaac1f2816a84a348cc49ad6abb22e11eab6112816a84a348c'
 CORS(app)
 
 
@@ -28,14 +30,19 @@ CORS(app)
 def homepage():
     return '<center><img src="https://static.wikia.nocookie.net/f377126c-7717-4026-aa5b-7ca887157442" alt="Hello There!"><br/><img src="https://media.makeameme.org/created/general-kenobi-5b18a9.jpg" alt="General Kenobi!"></center>'
 
+
 @app.route('/createline', methods=['GET'])
 def createLine():
-    url = "https://next-in-line-rpi.herokuapp.com/"
+    code = random.randint(1000, 9999)
+    # name = request.get_json()['name']
+    session['line_operator'] = {"name": "name", "code": code}
+    url = "https://next-in-line-rpi.herokuapp.com/?code=" + str(code);
 
     qr = GenerateQRCode(url)
-    qr.save("code.png") 
+    qr.save("QRCODES/" + str(code) + ".png")
 
-    return jsonify({"code": 123})
+    return jsonify({"code": code})
+
 
 def GenerateQRCode(url):
     qr = qrcode.QRCode(
@@ -44,7 +51,7 @@ def GenerateQRCode(url):
         box_size=10,
         border=4
     )
-    
+
     qr.add_data(url)
     qr.make(fit=True)
 
