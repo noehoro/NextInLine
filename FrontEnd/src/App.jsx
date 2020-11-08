@@ -5,6 +5,7 @@ import { Page2 } from "./components/page2";
 import Landing from "./components/Landing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Start } from "./components/Start";
+import { Line } from "./components/Line";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/start" component={Start} />
+            <Route exact path="/line" component={Line} />
             <Route path="/page1">
               <Page1 />
             </Route>
