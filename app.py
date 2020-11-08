@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session, request
+from flask import Flask, request, jsonify, session, request, redirect
 from flask_cors import CORS
 import random
 import qrcode
@@ -36,12 +36,18 @@ def createLine():
     code = random.randint(1000, 9999)
     name = request.get_json()['name']
     session['line_operator'] = {"name": name, "code": code}
-    url = "https://next-in-line-rpi.herokuapp.com/?code=" + str(code);
+    # url = "https://next-in-line-rpi.herokuapp.com/join/" + str(code);
 
-    qr = GenerateQRCode(url)
+    # qr = GenerateQRCode(url)
     # qr.save("QRCODES/" + str(code) + ".png")
 
     return jsonify({"code": code})
+
+@app.route('/join/<code>')
+def join(code):
+    # add user to database
+    session['customer'] = {"name": "name", "code": code}
+    return redirect('/#/waiting')
 
 
 def GenerateQRCode(url):
