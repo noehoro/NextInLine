@@ -24,7 +24,7 @@ nexmo_client = nexmo.Client(
     NEXMO_API_KEY, NEXMO_API_SECRET
 )
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="./build", static_url_path="/")
 app.config['SECRET_KEY'] = '9a63e9b6b22e11eabdab2816a84a348cc0491ea4b22e11eaac1f2816a84a348cc49ad6abb22e11eab6112816a84a348c'
 CORS(app)
 
@@ -44,7 +44,7 @@ def homepage():
         print('SUCCESS!!')
 
     '''
-    return '<center><img src="https://static.wikia.nocookie.net/f377126c-7717-4026-aa5b-7ca887157442" alt="Hello There!"><br/><img src="https://media.makeameme.org/created/general-kenobi-5b18a9.jpg" alt="General Kenobi!"></center>'
+    return app.send_static_file('index.html')
 
 
 # Send a request with {name:string} as a body param
@@ -137,7 +137,7 @@ def notifycustomer():
         removed_customer = response_document["customers"].pop(0)
         response_document.save()
 
-        phone_number=removed_customer["phone"]
+        phone_number = removed_customer["phone"]
         phone_number = int(phone_number)
         send_sms(phone_number)
 

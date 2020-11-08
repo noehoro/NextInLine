@@ -2,6 +2,9 @@ autopep8==1.5.3
 certifi==2020.6.20
 chardet==3.0.4
 click==7.1.2
+cloudant==2.14.0
+colorama==0.4.4
+Deprecated==1.2.10
 Flask==1.1.2
 Flask-Cors==3.0.8
 gunicorn==20.0.4
@@ -13,9 +16,13 @@ Jinja2==2.11.2
 jproperties==2.1.0
 MarkupSafe==1.1.1
 nexmo==2.5.2
+Pillow==8.0.1
 pycodestyle==2.6.0
 PyJWT==1.7.1
 python-dateutil==2.8.1
+pytz==2020.4
+qrcode==6.1
+reportlab==3.5.55
 requests==2.24.0
 six==1.15.0
 toml==0.10.1
@@ -24,6 +31,4 @@ urllib3==1.25.11
 uuid==1.30
 websocket-client==0.48.0
 Werkzeug==1.0.1
-Pillow==8.0.1
-qrcode==6.1
-reportlab==3.5.55
+wrapt==1.12.1
