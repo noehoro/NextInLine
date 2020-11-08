@@ -1,34 +1,34 @@
 from flask import Flask, request, jsonify, session, request, redirect
 from flask_cors import CORS
-import random
-import qrcode
-import nexmo
+# import random
+# import qrcode
+# import nexmo
 
-from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
+# from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
 
-from ibmcloudant.cloudant_v1 import CloudantV1, Document
-from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+# from ibmcloudant.cloudant_v1 import CloudantV1, Document
+# from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-from cloudant.client import Cloudant
-
-
-def connectDB():
-    connection = Cloudant.iam(ACCOUNT_NAME, API_KEY, connect=True)
-    print("DATABASE CONNECTED")
-
-    return connection
+# from cloudant.client import Cloudant
 
 
-# Create a new Nexmo Client object:
-nexmo_client = nexmo.Client(
-    NEXMO_API_KEY, NEXMO_API_SECRET
-)
+# def connectDB():
+#     connection = Cloudant.iam(ACCOUNT_NAME, API_KEY, connect=True)
+#     print("DATABASE CONNECTED")
+
+#     return connection
+
+
+# # Create a new Nexmo Client object:
+# nexmo_client = nexmo.Client(
+#     NEXMO_API_KEY, NEXMO_API_SECRET
+# )
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '9a63e9b6b22e11eabdab2816a84a348cc0491ea4b22e11eaac1f2816a84a348cc49ad6abb22e11eab6112816a84a348c'
 CORS(app)
 
-connection = connectDB()
+# connection = connectDB()
 
 
 @app.route('/')
