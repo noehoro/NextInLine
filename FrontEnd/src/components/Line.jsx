@@ -8,7 +8,7 @@ export const Line = ({ history }) => {
 
   const notifyCustomer = () => {
     axios
-      .put("http://next-in-line-rpi.herokuapp.com/notifycustomer", {
+      .put("http://localhost:5000/notifycustomer", {
         code: localStorage.getItem("lineCode"),
       })
       .then((response) => {
@@ -28,7 +28,7 @@ export const Line = ({ history }) => {
 
       <QRCode
         value={
-          "http://next-in-line-rpi.herokuapp.com/#/join/" +
+          "http://localhost:3000/#/join/" +
           localStorage.getItem("lineCode")
         }
       />

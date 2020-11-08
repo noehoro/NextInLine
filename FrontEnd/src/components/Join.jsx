@@ -16,7 +16,7 @@ export const Join = () => {
 
   const onClick = () => {
     axios
-      .post("http://next-in-line-rpi.herokuapp.com/addUser", {
+      .post("http://localhost:5000/addUser", {
         code: code,
         name: name,
         phone: phone,
