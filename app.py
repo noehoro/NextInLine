@@ -4,7 +4,8 @@ import random
 import qrcode
 import nexmo
 
-from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
+# from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
+from config import API_KEY
 
 # from ibmcloudant.cloudant_v1 import CloudantV1, Document
 # from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
