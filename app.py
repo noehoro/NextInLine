@@ -28,9 +28,9 @@ def homepage():
     return '<center><img src="https://static.wikia.nocookie.net/f377126c-7717-4026-aa5b-7ca887157442" alt="Hello There!"><br/><img src="https://media.makeameme.org/created/general-kenobi-5b18a9.jpg" alt="General Kenobi!"></center>'
 
 
-@app.route('/createline')
+@app.route('/createline', methods=['POST'])
 def createLine():
-    
+
     return jsonify({"code": 123})
 
 
