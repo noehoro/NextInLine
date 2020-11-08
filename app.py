@@ -12,34 +12,34 @@ NEXMO_API_KEY = 'e6fa95b5'
 NEXMO_API_SECRET = 'ot04m8vCDddkg91J'
 NEXMO_NUMBER = 15403244383
 
-# from ibmcloudant.cloudant_v1 import CloudantV1, Document
-# from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibmcloudant.cloudant_v1 import CloudantV1, Document
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-# from cloudant.client import Cloudant
-
-
-# def connectDB():
-#     connection = Cloudant.iam(ACCOUNT_NAME, API_KEY, connect=True)
-#     print("DATABASE CONNECTED")
-
-#     return connection
+from cloudant.client import Cloudant
 
 
-# # Create a new Nexmo Client object:
-# nexmo_client = nexmo.Client(
-#     NEXMO_API_KEY, NEXMO_API_SECRET
-# )
+def connectDB():
+    connection = Cloudant.iam(ACCOUNT_NAME, API_KEY, connect=True)
+    print("DATABASE CONNECTED")
+
+    return connection
+
+
+# Create a new Nexmo Client object:
+nexmo_client = nexmo.Client(
+    NEXMO_API_KEY, NEXMO_API_SECRET
+)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '9a63e9b6b22e11eabdab2816a84a348cc0491ea4b22e11eaac1f2816a84a348cc49ad6abb22e11eab6112816a84a348c'
 CORS(app)
 
-# connection = connectDB()
+connection = connectDB()
 
 
 @app.route('/')
 def homepage():
-    return "lol2"
+    return "lol3"
 
 
 # Send a request with {name:string} as a body param
