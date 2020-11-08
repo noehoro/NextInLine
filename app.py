@@ -5,7 +5,12 @@ import qrcode
 import nexmo
 
 # from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
-from config import API_KEY
+API_KEY = "Nam7uD5Cg04YA4dkxBhurGeEEvy-aTW4HUlH2R8PwrA7"
+DB_URL = "https://d170d760-975a-47fc-aff9-232fa364461b-bluemix.cloudantnosqldb.appdomain.cloud"
+ACCOUNT_NAME = "d170d760-975a-47fc-aff9-232fa364461b-bluemix"
+NEXMO_API_KEY = 'e6fa95b5'
+NEXMO_API_SECRET = 'ot04m8vCDddkg91J'
+NEXMO_NUMBER = 15403244383
 
 # from ibmcloudant.cloudant_v1 import CloudantV1, Document
 # from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
