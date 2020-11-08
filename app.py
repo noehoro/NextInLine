@@ -4,7 +4,7 @@ import random
 import qrcode
 import nexmo
 
-from config import API_KEY, DB_URL,NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
+from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
 
 from ibmcloudant.cloudant_v1 import CloudantV1, Document
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
@@ -17,6 +17,7 @@ def connectDB():
     print("DATABASE CONNECTED")
 
     return connection
+
 
 # Create a new Nexmo Client object:
 nexmo_client = nexmo.Client(
@@ -95,7 +96,7 @@ def join():
     return jsonify({"response_data": response_document})
 
 
-# return all people in line
+# return all lines
 @app.route('/getlines', methods=["GET"])
 def getlines():
     response_data = []
@@ -106,11 +107,11 @@ def getlines():
 
 
 # return a single line given a code
-@app.route('/getline', methods=['POST'])
+@app.route('/getline/', methods=['GET'])
 def getline():
     response_document = {}
 
-    # code = str(request.get_json()['code'])
+    #code = request.get_json()['code']
     code = "455988"
     database = connection['next_in_line']
 
@@ -120,6 +121,29 @@ def getline():
         response_document = database[code]
 
     return jsonify({"response_data": response_document['customers']})
+
+
+# return the notified and removed customer
+@app.route('/notifycustomer', methods=['PUT'])
+def notifycustomer():
+    response_document = {}
+
+    code = request.get_json()['code']  # code of the line
+    database = connection['next_in_line']
+
+    doc_exists = code in database
+
+    if doc_exists:
+        response_document = database[code]
+        removed_customer = response_document["customers"].pop(0)
+        response_document.save()
+
+        # removed_customer["phone"] is the number send text here.
+
+    else:
+        return jsonify({"response_data": "line not found"})
+
+    return jsonify({"response_data": removed_customer})
 
 
 def GenerateQRCode(url):
@@ -135,13 +159,14 @@ def GenerateQRCode(url):
 
     return qr.make_image(fill_color="black", back_color="white")
 
+
 @app.route("/sendtext")
 def send_sms():
     """ A POST endpoint that sends an SMS. """
- 
+
     # Extract the form values:
     to_number = 17242901307
- 
+
     # Send the SMS message:
     result = nexmo_client.send_message({
         'from': 15403244383,
@@ -150,6 +175,7 @@ def send_sms():
     })
 
     return "hello There!"
- 
+
+
 if __name__ == "__main__":
     app.run(debug=True)
