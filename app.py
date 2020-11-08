@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify, session, request, redirect
 from flask_cors import CORS
-# import random
-# import qrcode
-# import nexmo
+import random
+import qrcode
+import nexmo
 
 # from config import API_KEY, DB_URL, NEXMO_API_KEY, NEXMO_API_SECRET, ACCOUNT_NAME
 
