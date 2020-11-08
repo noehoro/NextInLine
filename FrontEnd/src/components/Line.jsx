@@ -28,7 +28,7 @@ export const Line = ({ history }) => {
 
       <QRCode
         value={
-          "http://nextinline.tech/#/join/" +
+          "https://noehoro.github.io/#/join/" +
           localStorage.getItem("lineCode")
         }
       />
