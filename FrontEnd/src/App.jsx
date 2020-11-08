@@ -6,9 +6,10 @@ import Landing from "./components/Landing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Start } from "./components/Start";
 import { Line } from "./components/Line";
+import { List } from "./components/List";
 
 
-function App() {
+const App = () => {
   return (
     <div className="App vw-100 vh-100 overflow-hidden text-dark bg-dark">
       <Router>
@@ -17,6 +18,8 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route exact path="/start" component={Start} />
             <Route exact path="/line" component={Line} />
+            <Route exact path="/seeline" component={List} />
+
             <Route path="/page1">
               <Page1 />
             </Route>

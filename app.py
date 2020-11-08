@@ -93,6 +93,10 @@ def join(code):
     session['customer'] = {"name": "name", "code": code}
     return redirect('/#/waiting')
 
+# @app.route('/getlist/<code>')
+# def getList(code):
+
+
 
 def GenerateQRCode(url):
     qr = qrcode.QRCode(
