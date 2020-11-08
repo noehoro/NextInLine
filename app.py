@@ -50,7 +50,7 @@ def homepage():
 # returns the code
 
 @app.route('/createline', methods=['POST'])
-def createLine():
+def createline():
     code = random.randint(100000, 999999)
     name = request.get_json()['name']
 
@@ -89,8 +89,31 @@ def join():
 
     return jsonify({"response_data": response_document})
 
-# @app.route('/getlist/<code>')
-# def getList(code):
+
+# return all lines
+@app.route('/getlines', methods=["GET"])
+def getlines():
+    response_data = []
+    database = connection['next_in_line']
+    for document in database:
+        response_data.append(document)
+    return jsonify({"response_data": response_data})
+
+
+# return a single line given a code
+@app.route('/getline/', methods=['GET'])
+def getline():
+    response_document = {}
+
+    code = request.get_json()['code']
+    database = connection['next_in_line']
+
+    doc_exists = code in database
+
+    if doc_exists:
+        response_document = database[code]
+
+    return jsonify({"response_data": response_document})
 
 
 def GenerateQRCode(url):
