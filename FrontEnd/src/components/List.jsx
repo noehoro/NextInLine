@@ -10,31 +10,26 @@ export const List = () => {
       <table class="table table-striped table-dark">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
+            <th scope="col">Rank</th>
+            <th scope="col">Name</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Noe</td>
-            <td>Horo</td>
+            <td>Noe Horo</td>
           </tr>
           <tr>
             <th scope="row">2</th>
-            <td>Kik</td>
-            <td>Pepmeyer</td>
+            <td>Kik Pepmeyer</td>
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td>Kevin</td>
-            <td>Kim</td>
+            <td>Kevin Kim</td>
           </tr>
           <tr>
             <th scope="row">4</th>
-            <td>Wyatt</td>
-            <td>Marvil</td>
+            <td>Wyatt Marvil</td>
           </tr>
         </tbody>
       </table>
