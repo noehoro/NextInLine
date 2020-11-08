@@ -10,7 +10,7 @@ export const Start = ({ history }) => {
 
     localStorage.setItem("lineName", name);
     axios
-      .post("http://localhost:5000/createline", { name: name })
+      .post("http://nextinline.tech/createline", { name: name })
       .then((response) => {
         localStorage.setItem("lineCode", response.data.code);
         history.push("/line");

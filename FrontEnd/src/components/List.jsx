@@ -10,7 +10,7 @@ export const List = ({ history }) => {
   useEffect(() => {
     const code = localStorage.getItem("lineCode");
     axios
-      .post("http://localhost:5000/getline", { code: code })
+      .post("http://nextinline.tech/getline", { code: code })
       .then((response) => {
         console.log(response.data.response_data);
         setData(response.data.response_data);

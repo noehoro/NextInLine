@@ -8,7 +8,7 @@ export const Line = ({ history }) => {
 
   const notifyCustomer = () => {
     axios
-      .put("http://localhost:5000/notifycustomer", {
+      .put("http://nextinline.tech/notifycustomer", {
         code: localStorage.getItem("lineCode"),
       })
       .then((response) => {
@@ -28,7 +28,7 @@ export const Line = ({ history }) => {
 
       <QRCode
         value={
-          "http://localhost:3000/#/join/" +
+          "http://nextinline.tech/#/join/" +
           localStorage.getItem("lineCode")
         }
       />

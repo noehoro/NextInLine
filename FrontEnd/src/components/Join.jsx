@@ -16,7 +16,7 @@ export const Join = () => {
 
   const onClick = () => {
     axios
-      .post("http://localhost:5000/addUser", {
+      .post("http://nextinline.tech/addUser", {
         code: code,
         name: name,
         phone: phone,
