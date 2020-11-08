@@ -1,20 +1,20 @@
-// import logo from './logo.svg';
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Page1 } from "./components/page1";
 import { Page2 } from "./components/page2";
+import Landing from "./components/Landing";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Start } from "./components/Start";
+
 
 function App() {
   return (
-    <div className="App">
+    <div className="App vw-100 vh-100 overflow-hidden text-dark bg-dark">
       <Router>
         <div className="App-header">
           <Switch>
-            <Route exact path="/">
-              <h1>This Is The Landing Page </h1>
-              <Link to="/page1"> Page 1 </Link>
-              <Link to="/page2"> Page 2 </Link>
-            </Route>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/start" component={Start} />
             <Route path="/page1">
               <Page1 />
             </Route>
