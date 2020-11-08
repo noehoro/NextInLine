@@ -8,7 +8,7 @@ export const Line = ({ history }) => {
 
   const notifyCustomer = () => {
     axios
-      .put("http://nextinline.tech/notifycustomer", {
+      .put("https://next-in-line-rpi.herokuapp.com/notifycustomer", {
         code: localStorage.getItem("lineCode"),
       })
       .then((response) => {

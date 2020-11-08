@@ -33,7 +33,8 @@ connection = connectDB()
 
 @app.route('/')
 def homepage():
-    return app.send_static_file('index.html')
+    # return app.send_static_file('index.html')
+    return "lol"
 
 
 # Send a request with {name:string} as a body param

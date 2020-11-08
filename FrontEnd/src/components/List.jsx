@@ -10,7 +10,7 @@ export const List = ({ history }) => {
   useEffect(() => {
     const code = localStorage.getItem("lineCode");
     axios
-      .post("http://nextinline.tech/getline", { code: code })
+      .post("https://next-in-line-rpi.herokuapp.com/getline", { code: code })
       .then((response) => {
         console.log(response.data.response_data);
         setData(response.data.response_data);
