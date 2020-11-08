@@ -39,7 +39,7 @@ connection = connectDB()
 
 @app.route('/')
 def homepage():
-    return "lol3"
+    return "lol4"
 
 
 # Send a request with {name:string} as a body param
@@ -50,125 +50,125 @@ def homepage():
 # create new empty line, and also generates the code
 # returns the code
 
-# @app.route('/createline', methods=['POST'])
-# def createline():
-#     code = random.randint(100000, 999999)
-#     name = request.get_json()['name']
+@app.route('/createline', methods=['POST'])
+def createline():
+    code = random.randint(100000, 999999)
+    name = request.get_json()['name']
 
-#     database = connection['next_in_line']
-#     data = {
-#         'name': name,
-#         '_id': str(code),
-#         'customers': []
-#     }
-#     response_document = database.create_document(data)
-#     print(response_document)
+    database = connection['next_in_line']
+    data = {
+        'name': name,
+        '_id': str(code),
+        'customers': []
+    }
+    response_document = database.create_document(data)
+    print(response_document)
 
-#     session['line_operator'] = {"name": name, "code": code}
+    session['line_operator'] = {"name": name, "code": code}
 
-#     return jsonify({"code": code})
-
-
-# @app.route('/addUser', methods=['POST'])
-# def addUser():
-#     name = request.get_json()['name']
-#     phone = request.get_json()['phone']
-#     code = request.get_json()['code']
-
-#     session['customer'] = {"name": "name", "code": code, "phone": phone}
-
-#     database = connection['next_in_line']
-#     data = {
-#         'name': name,
-#         'phone': phone
-#     }
-
-#     response_document = database[code]
-#     response_document['customers'].append(data)
-#     response_document.save()
-
-#     return jsonify({"response_data": response_document})
+    return jsonify({"code": code})
 
 
-# # return all lines
-# @app.route('/getlines', methods=["GET"])
-# def getlines():
-#     response_data = []
-#     database = connection['next_in_line']
-#     for document in database:
-#         response_data.append(document)
-#     return jsonify({"response_data": response_data})
+@app.route('/addUser', methods=['POST'])
+def addUser():
+    name = request.get_json()['name']
+    phone = request.get_json()['phone']
+    code = request.get_json()['code']
+
+    session['customer'] = {"name": "name", "code": code, "phone": phone}
+
+    database = connection['next_in_line']
+    data = {
+        'name': name,
+        'phone': phone
+    }
+
+    response_document = database[code]
+    response_document['customers'].append(data)
+    response_document.save()
+
+    return jsonify({"response_data": response_document})
 
 
-# # return a single line given a code
-# @app.route('/getline', methods=['POST'])
-# def getline():
-#     response_document = {}
-
-#     code = request.get_json()['code']
-#     database = connection['next_in_line']
-
-#     doc_exists = code in database
-
-#     if doc_exists:
-#         response_document = database[code]
-
-#     return jsonify({"response_data": response_document['customers']})
+# return all lines
+@app.route('/getlines', methods=["GET"])
+def getlines():
+    response_data = []
+    database = connection['next_in_line']
+    for document in database:
+        response_data.append(document)
+    return jsonify({"response_data": response_data})
 
 
-# # return the notified and removed customer
-# @app.route('/notifycustomer', methods=['PUT'])
-# def notifycustomer():
-#     response_document = {}
+# return a single line given a code
+@app.route('/getline', methods=['POST'])
+def getline():
+    response_document = {}
 
-#     code = request.get_json()['code']  # code of the line
-#     database = connection['next_in_line']
+    code = request.get_json()['code']
+    database = connection['next_in_line']
 
-#     doc_exists = code in database
+    doc_exists = code in database
 
-#     if doc_exists:
-#         response_document = database[code]
-#         removed_customer = response_document["customers"].pop(0)
-#         response_document.save()
+    if doc_exists:
+        response_document = database[code]
 
-#         phone_number = removed_customer["phone"]
-#         phone_number = int(phone_number)
-#         send_sms(phone_number)
-
-#     else:
-#         return jsonify({"response_data": "line not found"})
-
-#     return jsonify({"response_data": removed_customer})
+    return jsonify({"response_data": response_document['customers']})
 
 
-# def GenerateQRCode(url):
-#     qr = qrcode.QRCode(
-#         version=1,
-#         error_correction=qrcode.constants.ERROR_CORRECT_M,
-#         box_size=10,
-#         border=4
-#     )
+# return the notified and removed customer
+@app.route('/notifycustomer', methods=['PUT'])
+def notifycustomer():
+    response_document = {}
 
-#     qr.add_data(url)
-#     qr.make(fit=True)
+    code = request.get_json()['code']  # code of the line
+    database = connection['next_in_line']
 
-#     return qr.make_image(fill_color="black", back_color="white")
+    doc_exists = code in database
 
+    if doc_exists:
+        response_document = database[code]
+        removed_customer = response_document["customers"].pop(0)
+        response_document.save()
 
-# def send_sms(number):
+        phone_number = removed_customer["phone"]
+        phone_number = int(phone_number)
+        send_sms(phone_number)
 
-#     # Extract the form values:
-#     to_number = number
+    else:
+        return jsonify({"response_data": "line not found"})
 
-#     # Send the SMS message:
-#     result = nexmo_client.send_message({
-#         'from': 15403244383,
-#         'to': to_number,
-#         'text': 'Nik tell us if u got this',
-#     })
-
-#     return "hello There!"
+    return jsonify({"response_data": removed_customer})
 
 
-# if __name__ == "__main__":
-#     app.run()
+def GenerateQRCode(url):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_M,
+        box_size=10,
+        border=4
+    )
+
+    qr.add_data(url)
+    qr.make(fit=True)
+
+    return qr.make_image(fill_color="black", back_color="white")
+
+
+def send_sms(number):
+
+    # Extract the form values:
+    to_number = number
+
+    # Send the SMS message:
+    result = nexmo_client.send_message({
+        'from': 15403244383,
+        'to': to_number,
+        'text': 'Nik tell us if u got this',
+    })
+
+    return "hello There!"
+
+
+if __name__ == "__main__":
+    app.run()
