@@ -3,22 +3,22 @@ from flask_cors import CORS
 import random
 import qrcode
 
-# from config import API_KEY, DB_URL
+from config import API_KEY, DB_URL
 
-# from ibmcloudant.cloudant_v1 import CloudantV1
-# from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibmcloudant.cloudant_v1 import CloudantV1
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-# # DATABASE CONNECTION
+# DATABASE CONNECTION
 
-# authenticator = IAMAuthenticator(API_KEY)
+authenticator = IAMAuthenticator(API_KEY)
 
-# service = CloudantV1(authenticator=authenticator)
+service = CloudantV1(authenticator=authenticator)
 
-# service.set_service_url(DB_URL)
+service.set_service_url(DB_URL)
 
-# response = service.get_server_information().get_result()
+response = service.get_server_information().get_result()
 
-# print(response)
+print(response)
 
 
 app = Flask(__name__)
@@ -36,14 +36,14 @@ def createLine():
     code = random.randint(1000, 9999)
     name = request.get_json()['name']
     session['line_operator'] = {"name": name, "code": code}
-    
-    # Add to DB
+
+    # TODO create new waiting line, with code code
 
     return jsonify({"code": code})
 
 @app.route('/join/<code>')
 def join(code):
-    # add user to database
+    # TODO All user to waiting line
     session['customer'] = {"name": "name", "code": code}
     return redirect('/#/waiting')
 
