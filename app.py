@@ -33,18 +33,8 @@ connection = connectDB()
 
 @app.route('/')
 def homepage():
-    '''
-    my_database = client.create_database('line')
-    # You can check that the database exists
-    if my_database.exists():
-        print('SUCCESS!!')
-    my_database = connection.create_database('next_in_line')
-    # You can check that the database exists
-    if my_database.exists():
-        print('SUCCESS!!')
-
-    '''
-    return app.send_static_file('index.html')
+    # return app.send_static_file('index.html')
+    return "lol"
 
 
 # Send a request with {name:string} as a body param
@@ -110,8 +100,7 @@ def getlines():
 def getline():
     response_document = {}
 
-    # code = request.get_json()['code']
-    code = "455988"
+    code = request.get_json()['code']
     database = connection['next_in_line']
 
     doc_exists = code in database
