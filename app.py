@@ -24,7 +24,7 @@ nexmo_client = nexmo.Client(
     NEXMO_API_KEY, NEXMO_API_SECRET
 )
 
-app = Flask(__name__, static_folder="./build", static_url_path="/")
+app = Flask(__name__)
 app.config['SECRET_KEY'] = '9a63e9b6b22e11eabdab2816a84a348cc0491ea4b22e11eaac1f2816a84a348cc49ad6abb22e11eab6112816a84a348c'
 CORS(app)
 
@@ -33,7 +33,6 @@ connection = connectDB()
 
 @app.route('/')
 def homepage():
-    # return app.send_static_file('index.html')
     return "lol"
 
 
