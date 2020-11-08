@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Start } from "./components/Start";
 import { Line } from "./components/Line";
 import { List } from "./components/List";
+import { Join } from "./components/Join";
 
 
 const App = () => {
@@ -19,13 +20,8 @@ const App = () => {
             <Route exact path="/start" component={Start} />
             <Route exact path="/line" component={Line} />
             <Route exact path="/seeline" component={List} />
+            <Route exact path="/join/:linecode?" component={Join} />
 
-            <Route path="/page1">
-              <Page1 />
-            </Route>
-            <Route path="/page2">
-              <Page2 />
-            </Route>
           </Switch>
         </div>
       </Router>

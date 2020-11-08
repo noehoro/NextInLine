@@ -74,13 +74,12 @@ def createline():
     return jsonify({"code": code})
 
 
-@app.route('/join', methods=['POST'])
-def join():
+@app.route('/addUser', methods=['POST'])
+def addUser():
     name = request.get_json()['name']
     phone = request.get_json()['phone']
     code = request.get_json()['code']
 
-    # TODO All user to waiting line
     session['customer'] = {"name": "name", "code": code, "phone": phone}
 
     database = connection['next_in_line']
@@ -107,11 +106,11 @@ def getlines():
 
 
 # return a single line given a code
-@app.route('/getline/', methods=['GET'])
+@app.route('/getline', methods=['POST'])
 def getline():
     response_document = {}
 
-    #code = request.get_json()['code']
+    # code = request.get_json()['code']
     code = "455988"
     database = connection['next_in_line']
 
@@ -138,7 +137,9 @@ def notifycustomer():
         removed_customer = response_document["customers"].pop(0)
         response_document.save()
 
-        # removed_customer["phone"] is the number send text here.
+        phone_number=removed_customer["phone"]
+        phone_number = int(phone_number)
+        send_sms(phone_number)
 
     else:
         return jsonify({"response_data": "line not found"})
@@ -160,18 +161,16 @@ def GenerateQRCode(url):
     return qr.make_image(fill_color="black", back_color="white")
 
 
-@app.route("/sendtext")
-def send_sms():
-    """ A POST endpoint that sends an SMS. """
+def send_sms(number):
 
     # Extract the form values:
-    to_number = 17242901307
+    to_number = number
 
     # Send the SMS message:
     result = nexmo_client.send_message({
         'from': 15403244383,
         'to': to_number,
-        'text': 'Your spot is ready!',
+        'text': 'Nik tell us if u got this',
     })
 
     return "hello There!"
