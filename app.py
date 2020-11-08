@@ -36,10 +36,8 @@ def createLine():
     code = random.randint(1000, 9999)
     name = request.get_json()['name']
     session['line_operator'] = {"name": name, "code": code}
-    # url = "https://next-in-line-rpi.herokuapp.com/join/" + str(code);
-
-    # qr = GenerateQRCode(url)
-    # qr.save("QRCODES/" + str(code) + ".png")
+    
+    # Add to DB
 
     return jsonify({"code": code})
 

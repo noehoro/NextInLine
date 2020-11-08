@@ -15,7 +15,7 @@ export const Line = () => {
   return (
     <div className="container w-50">
       <div>Your line's name is {localStorage.getItem("lineName")}</div>
-      <img al="QR CODe" src={createQRCode()} />
+      <img alt="QR CODe" src={createQRCode()} />
 
       <canvas id="qr"></canvas>
 
