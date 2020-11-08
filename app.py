@@ -39,7 +39,7 @@ def createLine():
     url = "https://next-in-line-rpi.herokuapp.com/?code=" + str(code);
 
     qr = GenerateQRCode(url)
-    qr.save("QRCODES/" + str(code) + ".png")
+    # qr.save("QRCODES/" + str(code) + ".png")
 
     return jsonify({"code": code})
 
